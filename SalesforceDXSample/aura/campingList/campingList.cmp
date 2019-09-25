@@ -1,0 +1,31 @@
+<aura:component controller="CampingListController">
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:handler name="addItem" event="c:addItemEvent" action="{!c.handleAdditem}"/>
+    <aura:handler value="{!this}" name="init" action="{!c.doInit}"/>
+    <!-- PAGE HEADER -->
+    <lightning:layout class="slds-page-header slds-page-header--object-home">
+        <lightning:layoutItem>
+            <lightning:icon iconName="action:goal" alternativeText="Campaign List"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading--label">Camping List</h1>
+            </div>
+        </lightning:layoutItem>
+    
+        <lightning:layoutItem padding="around-small" size="6">
+                <!-- CREATE NEW EXPENSE -->
+            <c:campingListForm/>
+        <!-- / CREATE NEW EXPENSE -->
+        </lightning:layoutItem>
+    
+    <!-- / NEW EXPENSE FORM -->
+    <lightning:card title="Campaign Items">
+        <p class="slds-p-horizontal--small">
+            <aura:iteration items="{!v.items}" var="item">
+                <c:campingListItem item="{!item}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+</lightning:layout>
+</aura:component>
